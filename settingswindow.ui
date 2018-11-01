@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>settingswindow</class>
+ <widget class="QDialog" name="settingswindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>200</width>
+    <height>200</height>
+   </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>16777215</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Ustawienia</string>
+  </property>
+  <property name="whatsThis">
+   <string/>
+  </property>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

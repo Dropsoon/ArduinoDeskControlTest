@@ -5,10 +5,10 @@
 */
 
 #include <QtSerialPort/QSerialPort>
-//#include <QSerialPort>
-
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <windows.h>
+#include "settingswindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -19,23 +19,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-
+    serial.close();
     delete ui;
 }
 
 void MainWindow::on_bAutoUpload_clicked()
 {
-    serial.setPortName("COM5");
-    serial.setBaudRate(9600);
-    serial.setDataBits(QSerialPort::Data8);
-    serial.setParity(QSerialPort::NoParity);
-    serial.setStopBits(QSerialPort::OneStop);
-    serial.setFlowControl(QSerialPort::NoFlowControl);
-    serial.open(QIODevice::ReadWrite);
-    //serial.write("255");
-    serial.close();
-
-
     if(bAutoEnabled){  //if auto update enabled disable auto update and enable manual update
         ui->bManualUpload->setEnabled(true);
         bAutoEnabled = false;
@@ -44,32 +33,28 @@ void MainWindow::on_bAutoUpload_clicked()
         ui->bManualUpload->setEnabled(false);
         bAutoEnabled = true;
         ui->bAutoUpload->setText("Zatrzymaj");
-    }
+   }
 }
 
-
-
-//serial.setPortName("COM1");
-//serial.setBaudRate(QSerialPort::Baud9600);
-//serial.setDataBits(QSerialPort::Data8);
-//serial.setParity(QSerialPort::NoParity);
-//serial.setStopBits(QSerialPort::OneStop);
-//serial.setFlowControl(QSerialPort::NoFlowControl);
-//serial.open(QIODevice::ReadWrite); serial.write("hello");
-//serial.close();
-
 void MainWindow::on_bConnect_clicked()
-{
+{   
     if(bConnected){
-        bConnected = false;
+        serial.close();
         ui->bConnect->setText("Połącz");
     } else {
         ui->bConnect->setText("Łączenie...");
-        //serial->setPortName(sPort);
-        bConnected = true;
-        ui->bConnect->setText("Rozłącz");
+        serial.setPortName(sComSelected);
+        serial.setBaudRate(9600);
+        serial.setDataBits(QSerialPort::Data8);
+        serial.setParity(QSerialPort::NoParity);
+        serial.setStopBits(QSerialPort::OneStop);
+        serial.setFlowControl(QSerialPort::NoFlowControl);
+        if(serial.open(QIODevice::ReadWrite)){
+            ui->bConnect->setText("Rozłącz");
+        } else {
+            ui->bConnect->setText("Błąd");
+        }
     }
-
 }
 
 void MainWindow::on_cPort_currentIndexChanged(const QString &arg1)
@@ -78,7 +63,65 @@ void MainWindow::on_cPort_currentIndexChanged(const QString &arg1)
         ui->bConnect->setEnabled(false);
     } else {
         ui->bConnect->setEnabled(true);
+        sComSelected = arg1;
     }
-
-    //sPort = arg1;
 }
+
+void MainWindow::on_bManualUpload_clicked()
+{
+    std::string s = std::to_string(iRedVal);
+    char const *pchar = s.c_str();
+    serial.write(pchar);
+    Sleep(50);
+    std::string ss = std::to_string(iGreenVal);
+    char const *pcharr = ss.c_str();
+    serial.write(pcharr);
+    Sleep(50);
+    std::string sss = std::to_string(iBlueVal);
+    char const *pcharrr = sss.c_str();
+    serial.write(pcharrr);
+    Sleep(50);
+    serial.write(pcharrr);
+}
+
+void MainWindow::on_sBlue_sliderMoved(int position)
+{
+    iBlueVal = position;
+}
+
+void MainWindow::on_sGreen_sliderMoved(int position)
+{
+    iGreenVal = position;
+}
+
+void MainWindow::on_sRed_sliderMoved(int position)
+{
+    iRedVal = position;
+}
+
+void MainWindow::on_actionSettings_triggered()
+{
+    settui =new settingswindow(this);
+    settui->show();
+}
+
+
+/*
+
+//    if(bConnected){
+//        bConnected = false;
+//        ui->bConnect->setText("Połącz");
+//    } else {
+//        ui->bConnect->setText("Łączenie...");
+//        //serial->setPortName(sPort);
+//        bConnected = true;
+//        ui->bConnect->setText("Rozłącz");
+//    }
+
+
+
+//    std::string s = std::to_string(position);
+//    char const *pchar = s.c_str();
+//    ui->lSelectPort->setText(pchar);
+
+*/

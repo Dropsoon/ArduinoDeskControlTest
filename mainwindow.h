@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QSerialPort>
+#include "settingswindow.h"
 //#include <QtSerialPort/QSerialPort>
 
 namespace Ui {
@@ -21,6 +22,8 @@ public:
 
     bool bAutoEnabled = false;
     bool bConnected = false;
+    int iRedVal, iGreenVal, iBlueVal;
+    QString sComSelected;
 
 private slots:
     void on_bAutoUpload_clicked();
@@ -29,8 +32,19 @@ private slots:
 
     void on_cPort_currentIndexChanged(const QString &arg1);
 
+    void on_bManualUpload_clicked();
+
+    void on_sBlue_sliderMoved(int position);
+
+    void on_sGreen_sliderMoved(int position);
+
+    void on_sRed_sliderMoved(int position);
+
+    void on_actionSettings_triggered();
+
 private:
     Ui::MainWindow *ui;
+    settingswindow *settui;
 };
 
 #endif // MAINWINDOW_H
