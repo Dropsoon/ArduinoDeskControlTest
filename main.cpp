@@ -1,3 +1,5 @@
+//lol
+
 #include "mainwindow.h"
 #include <QApplication>
 
