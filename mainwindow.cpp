@@ -41,6 +41,9 @@ void MainWindow::on_bConnect_clicked()
     if(bConnected){
         serial.close();
         ui->bConnect->setText("Połącz");
+        //ui->bAutoUpload->setEnabled(false);
+        ui->bManualUpload->setEnabled(false);
+        bConnected = !bConnected;
     } else {
         ui->bConnect->setText("Łączenie...");
         serial.setPortName(sComSelected);
@@ -51,6 +54,9 @@ void MainWindow::on_bConnect_clicked()
         serial.setFlowControl(QSerialPort::NoFlowControl);
         if(serial.open(QIODevice::ReadWrite)){
             ui->bConnect->setText("Rozłącz");
+            //ui->bAutoUpload->setEnabled(true);
+            ui->bManualUpload->setEnabled(true);
+            bConnected = !bConnected;
         } else {
             ui->bConnect->setText("Błąd");
         }
@@ -69,34 +75,57 @@ void MainWindow::on_cPort_currentIndexChanged(const QString &arg1)
 
 void MainWindow::on_bManualUpload_clicked()
 {
-    std::string s = std::to_string(iRedVal);
-    char const *pchar = s.c_str();
-    serial.write(pchar);
-    Sleep(50);
-    std::string ss = std::to_string(iGreenVal);
-    char const *pcharr = ss.c_str();
-    serial.write(pcharr);
-    Sleep(50);
-    std::string sss = std::to_string(iBlueVal);
-    char const *pcharrr = sss.c_str();
-    serial.write(pcharrr);
-    Sleep(50);
-    serial.write(pcharrr);
+    std::string sR, sG, sB, sSerial;
+    sR = "R" + std::to_string(iRedVal);
+    sG = "G" + std::to_string(iGreenVal);
+    sB = "B" + std::to_string(iBlueVal);
+
+    sSerial = sR + sG + sB;
+
+    char const *cR, *cG, *cB, *cSerial;
+    cR = sR.c_str();
+    cG = sG.c_str();
+    cB = sB.c_str();
+    cSerial = sSerial.c_str();
+
+    serial.write(cSerial);
+
+
+
+
+
+
+//    std::string s = std::to_string(iRedVal);
+//    char const *pchar = s.c_str();
+//    serial.write(pchar);
+//    Sleep(50);
+//    std::string ss = std::to_string(iGreenVal);
+//    char const *pcharr = ss.c_str();
+//    serial.write(pcharr);
+//    Sleep(50);
+//    std::string sss = std::to_string(iBlueVal);
+//    char const *pcharrr = sss.c_str();
+//    serial.write(pcharrr);
+//    Sleep(50);
+//    serial.write(pcharrr);
 }
 
 void MainWindow::on_sBlue_sliderMoved(int position)
 {
     iBlueVal = position;
+    on_bManualUpload_clicked();
 }
 
 void MainWindow::on_sGreen_sliderMoved(int position)
 {
     iGreenVal = position;
+    on_bManualUpload_clicked();
 }
 
 void MainWindow::on_sRed_sliderMoved(int position)
 {
     iRedVal = position;
+    on_bManualUpload_clicked();
 }
 
 void MainWindow::on_actionSettings_triggered()

@@ -62,7 +62,7 @@
          <item>
           <widget class="QSlider" name="sRed">
            <property name="maximum">
-            <number>256</number>
+            <number>255</number>
            </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -72,7 +72,7 @@
          <item>
           <widget class="QSlider" name="sGreen">
            <property name="maximum">
-            <number>256</number>
+            <number>255</number>
            </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -82,7 +82,7 @@
          <item>
           <widget class="QSlider" name="sBlue">
            <property name="maximum">
-            <number>256</number>
+            <number>255</number>
            </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -240,6 +240,9 @@
        </item>
        <item>
         <widget class="QPushButton" name="bManualUpload">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="text">
           <string>Ustaw ręcznie</string>
          </property>
