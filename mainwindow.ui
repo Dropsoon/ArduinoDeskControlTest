@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>250</width>
-    <height>210</height>
+    <width>559</width>
+    <height>537</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -24,8 +24,8 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>250</width>
-    <height>210</height>
+    <width>2500</width>
+    <height>2100</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -42,174 +42,483 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <widget class="QWidget" name="verticalLayoutWidget_4">
+   <widget class="QGroupBox" name="gMonitor">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>231</width>
+      <width>281</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Monitor</string>
+    </property>
+    <widget class="QWidget" name="verticalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>261</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="AllMonitor">
+      <item>
+       <layout class="QHBoxLayout" name="ButtonsMonitor">
+        <item>
+         <widget class="QPushButton" name="bMonitorAll">
+          <property name="text">
+           <string>Zaznacz wszystkie</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="bMonitorNone">
+          <property name="text">
+           <string>Odznacz wysztkie</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Pojedyńcze piksele:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="ChcekBoxsMonitor">
+        <item>
+         <widget class="QCheckBox" name="cMonPx1">
+          <property name="text">
+           <string>Px 1</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="cMonPx2">
+          <property name="text">
+           <string>Px 2</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="gListwa">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>120</y>
+      <width>281</width>
       <height>161</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="All">
-     <property name="sizeConstraint">
-      <enum>QLayout::SetDefaultConstraint</enum>
+    <property name="title">
+     <string>Listwa</string>
+    </property>
+    <widget class="QWidget" name="verticalLayoutWidget_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>264</width>
+       <height>125</height>
+      </rect>
      </property>
-     <item>
-      <layout class="QHBoxLayout" name="RGBChose">
-       <item>
-        <layout class="QVBoxLayout" name="Sliders">
-         <item>
-          <widget class="QSlider" name="sRed">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-           <property name="maximum">
-            <number>255</number>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSlider" name="sGreen">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-           <property name="maximum">
-            <number>255</number>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSlider" name="sBlue">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-           <property name="maximum">
-            <number>255</number>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="Names">
-         <item>
-          <widget class="QLabel" name="lRed">
-           <property name="text">
-            <string>Red:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="lGreen">
-           <property name="text">
-            <string>Green:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="lBlue">
-           <property name="text">
-            <string>Blue:</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="Values">
-         <item>
-          <widget class="QLabel" name="lRedVal">
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="lGreenVal">
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="lBlueVal">
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="Connect">
-       <item>
-        <widget class="QLabel" name="lSelectPort">
-         <property name="text">
-          <string>Wybierz port:</string>
-         </property>
-         <property name="scaledContents">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="cPort">
-         <item>
-          <property name="text">
-           <string>Wybierz</string>
+     <layout class="QVBoxLayout" name="AllListwa">
+      <item>
+       <layout class="QHBoxLayout" name="ButtonsListwa">
+        <item>
+         <widget class="QPushButton" name="bListwaAll">
+          <property name="enabled">
+           <bool>true</bool>
           </property>
-         </item>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="bConnect">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
+          <property name="text">
+           <string>Zaznacz wszystkie</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="bListwaNone">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Odznacz wysztkie</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Pojedyńcze piksele:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="ChcekBoxsListwa">
+        <item>
+         <widget class="QCheckBox" name="cListPx1">
+          <property name="text">
+           <string>Px 1</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="cListPx2">
+          <property name="text">
+           <string>Px 2</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="cListPx3">
+          <property name="text">
+           <string>Px 3</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="cListPx4">
+          <property name="text">
+           <string>Px 4</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="cListPx5">
+          <property name="text">
+           <string>Px 5</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QCheckBox" name="cListPx6">
+          <property name="text">
+           <string>Px 6</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="cListPx7">
+          <property name="text">
+           <string>Px 7</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="cListPx8">
+          <property name="text">
+           <string>Px 8</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="cListPx9">
+          <property name="text">
+           <string>Px 9</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="cListPx10">
+          <property name="text">
+           <string>Px 10</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QCheckBox" name="cListPx11">
+          <property name="text">
+           <string>Px 11</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="gKolor">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>10</y>
+      <width>251</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Kolor</string>
+    </property>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>229</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="RGBChose">
+      <item>
+       <layout class="QVBoxLayout" name="Sliders">
+        <item>
+         <widget class="QSlider" name="sRed">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="maximum">
+           <number>255</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="sGreen">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="maximum">
+           <number>255</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="sBlue">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="maximum">
+           <number>255</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="Names">
+        <item>
+         <widget class="QLabel" name="lRed">
+          <property name="text">
+           <string>Red:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lGreen">
+          <property name="text">
+           <string>Green:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lBlue">
+          <property name="text">
+           <string>Blue:</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="Values">
+        <item>
+         <widget class="QLabel" name="lRedVal">
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lGreenVal">
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lBlueVal">
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="gPolacz">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>290</y>
+      <width>251</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Połącz</string>
+    </property>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>229</width>
+       <height>77</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="Connect">
+      <item>
+       <widget class="QLabel" name="lSelectPort">
+        <property name="text">
+         <string>Wybierz port:</string>
+        </property>
+        <property name="scaledContents">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="cPort">
+        <item>
          <property name="text">
-          <string>Połącz</string>
+          <string>Wybierz</string>
          </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="Upload">
-       <item>
-        <widget class="QPushButton" name="bAutoUpload">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="text">
-          <string>Automatycznie ustawiaj</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="bManualUpload">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="text">
-          <string>Ustaw ręcznie</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="bConnect">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Połącz</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>410</y>
+      <width>251</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Ustawianie</string>
+    </property>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>229</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="Upload">
+      <item>
+       <widget class="QPushButton" name="bAutoUpload">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Automatycznie ustawiaj</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="bManualUpload">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Ustaw ręcznie</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="gSufit">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>290</y>
+      <width>281</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Sufit</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="gPodgladKoloru">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>130</y>
+      <width>251</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Podgląd koloru</string>
+    </property>
+    <widget class="QWidget" name="displayWidget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>231</width>
+       <height>101</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -217,7 +526,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>250</width>
+     <width>559</width>
      <height>20</height>
     </rect>
    </property>
@@ -283,12 +592,12 @@
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>82</x>
-     <y>120</y>
+     <x>384</x>
+     <y>93</y>
     </hint>
     <hint type="destinationlabel">
-     <x>283</x>
-     <y>120</y>
+     <x>536</x>
+     <y>93</y>
     </hint>
    </hints>
   </connection>
@@ -299,12 +608,12 @@
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>235</x>
-     <y>191</y>
+     <x>481</x>
+     <y>114</y>
     </hint>
     <hint type="destinationlabel">
-     <x>285</x>
-     <y>190</y>
+     <x>536</x>
+     <y>114</y>
     </hint>
    </hints>
   </connection>
@@ -315,12 +624,12 @@
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>186</x>
-     <y>258</y>
+     <x>481</x>
+     <y>135</y>
     </hint>
     <hint type="destinationlabel">
-     <x>288</x>
-     <y>264</y>
+     <x>536</x>
+     <y>135</y>
     </hint>
    </hints>
   </connection>

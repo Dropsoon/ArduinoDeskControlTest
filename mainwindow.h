@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QSerialPort>
 #include "settingswindow.h"
+#include <QColor>
 //#include <QtSerialPort/QSerialPort>
 
 namespace Ui {
@@ -13,6 +14,7 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+    Q_PROPERTY(QColor color READ color NOTIFY colorChanged)
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
@@ -23,7 +25,16 @@ public:
     bool bAutoEnabled = false;
     bool bConnected = false;
     int iRedVal, iGreenVal, iBlueVal;
+    int px[13];
     QString sComSelected;
+
+    QColor color() const
+    {
+        return m_color;
+    }
+
+signals:
+    void colorChanged(QColor color);
 
 private slots:
     void on_bAutoUpload_clicked();
@@ -42,9 +53,22 @@ private slots:
 
     void on_actionSettings_triggered();
 
+    void onColorChanged();
+
+    void on_bMonitorAll_clicked();
+
+    void on_bMonitorNone_clicked();
+
+    void on_bListwaAll_clicked();
+
+    void on_bListwaNone_clicked();
+
+    void chceckPx();
+
 private:
     Ui::MainWindow *ui;
     settingswindow *settui;
+    QColor m_color;
 };
 
 #endif // MAINWINDOW_H

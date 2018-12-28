@@ -5,6 +5,7 @@
 */
 
 #include <QtSerialPort/QSerialPort>
+#include <QPalette>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <windows.h>
@@ -25,6 +26,15 @@ MainWindow::MainWindow(QWidget *parent) :
     iRedVal = 0;
     iGreenVal = 0;
     iBlueVal = 0;
+
+    connect(ui->sRed, &QAbstractSlider::sliderMoved, this, &MainWindow::onColorChanged);
+    connect(ui->sGreen, &QAbstractSlider::sliderMoved, this, &MainWindow::onColorChanged);
+    connect(ui->sBlue, &QAbstractSlider::sliderMoved, this, &MainWindow::onColorChanged);
+    onColorChanged();
+
+    ui->gMonitor->setEnabled(false);
+    ui->gListwa->setEnabled(false);
+    ui->gSufit->setEnabled(false);
 }
 
 MainWindow::~MainWindow()
@@ -56,6 +66,9 @@ void MainWindow::on_bConnect_clicked()
         ui->sRed->setEnabled(false);
         ui->sGreen->setEnabled(false);
         ui->sBlue->setEnabled(false);
+        ui->gMonitor->setEnabled(false);
+        ui->gListwa->setEnabled(false);
+        ui->gSufit->setEnabled(false);
         bConnected = !bConnected;
         if(bAutoEnabled){
             ui->bAutoUpload->setText("Automatyczna zmiana");
@@ -76,6 +89,9 @@ void MainWindow::on_bConnect_clicked()
             ui->sRed->setEnabled(true);
             ui->sGreen->setEnabled(true);
             ui->sBlue->setEnabled(true);
+            ui->gMonitor->setEnabled(true);
+            ui->gListwa->setEnabled(true);
+            ui->gSufit->setEnabled(true);
             bConnected = !bConnected;
         } else {
             ui->bConnect->setText("Błąd");
@@ -101,6 +117,10 @@ void MainWindow::on_bManualUpload_clicked()
     sB = "B" + std::to_string(iBlueVal);
 
     sSerial = sR + sG + sB;
+
+    for(int i=0; i<13; i++){
+        sSerial = sSerial + std::to_string(i);
+    }
 
     char const *cSerial;
     cSerial = sSerial.c_str();
@@ -136,4 +156,73 @@ void MainWindow::on_actionSettings_triggered()
 {
     settui =new settingswindow(this);
     settui->show();
+}
+
+void MainWindow::onColorChanged()
+{
+    m_color.setRgb(ui->sRed->value(), ui->sGreen->value(), ui->sBlue->value());
+    QPalette pal = ui->displayWidget->palette();
+    pal.setColor(QPalette::Window, m_color);
+    ui->displayWidget->setPalette(pal);
+    emit colorChanged(m_color);
+}
+
+void MainWindow::on_bMonitorAll_clicked()
+{
+    ui->cMonPx1->setChecked(true);
+    ui->cMonPx2->setChecked(true);
+}
+
+void MainWindow::on_bMonitorNone_clicked()
+{
+    ui->cMonPx1->setChecked(false);
+    ui->cMonPx2->setChecked(false);
+}
+
+void MainWindow::on_bListwaAll_clicked()
+{
+    ui->cListPx1->setChecked(true);
+    ui->cListPx2->setChecked(true);
+    ui->cListPx3->setChecked(true);
+    ui->cListPx4->setChecked(true);
+    ui->cListPx5->setChecked(true);
+    ui->cListPx6->setChecked(true);
+    ui->cListPx7->setChecked(true);
+    ui->cListPx8->setChecked(true);
+    ui->cListPx9->setChecked(true);
+    ui->cListPx10->setChecked(true);
+    ui->cListPx11->setChecked(true);
+}
+
+void MainWindow::on_bListwaNone_clicked()
+{
+    ui->cListPx1->setChecked(false);
+    ui->cListPx2->setChecked(false);
+    ui->cListPx3->setChecked(false);
+    ui->cListPx4->setChecked(false);
+    ui->cListPx5->setChecked(false);
+    ui->cListPx6->setChecked(false);
+    ui->cListPx7->setChecked(false);
+    ui->cListPx8->setChecked(false);
+    ui->cListPx9->setChecked(false);
+    ui->cListPx10->setChecked(false);
+    ui->cListPx11->setChecked(false);
+}
+
+void MainWindow::chceckPx()
+{
+    if(ui->cMonPx1->checkState()) px[0] = 1; else px[0] = 0;
+    if(ui->cMonPx2->checkState()) px[1] = 1; else px[1] = 0;
+
+    if(ui->cListPx1->checkState()) px[2] = 1; else px[2] = 0;
+    if(ui->cListPx2->checkState()) px[3] = 1; else px[3] = 0;
+    if(ui->cListPx3->checkState()) px[4] = 1; else px[4] = 0;
+    if(ui->cListPx4->checkState()) px[5] = 1; else px[5] = 0;
+    if(ui->cListPx5->checkState()) px[6] = 1; else px[6] = 0;
+    if(ui->cListPx6->checkState()) px[7] = 1; else px[7] = 0;
+    if(ui->cListPx7->checkState()) px[8] = 1; else px[8] = 0;
+    if(ui->cListPx8->checkState()) px[9] = 1; else px[9] = 0;
+    if(ui->cListPx9->checkState()) px[10] = 1; else px[10] = 0;
+    if(ui->cListPx10->checkState()) px[11] = 1; else px[11] = 0;
+    if(ui->cListPx11->checkState()) px[12] = 1; else px[12] = 0;
 }
